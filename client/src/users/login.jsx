@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
-
+import "./login.css"
 
  function Login(){
     const [data, setData] = useState({
@@ -26,6 +26,7 @@ import {useNavigate} from 'react-router-dom'
     return(
         <div className="login">
           <h1>Login</h1>
+          <label>Username</label>
           <input type="text" placeholder="username" onChange={(e) => setData({...data, username: e.target.value})}/>
           <label>Password</label>
           <input type="password" placeholder="password" onChange={(e) => setData({...data, password: e. target.value})}/>
