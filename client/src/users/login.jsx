@@ -24,13 +24,14 @@ import "./login.css"
     }
 
     return(
-        <div className="login">
-          <h1>Login</h1>
-          <label>Username</label>
-          <input type="text" placeholder="username" onChange={(e) => setData({...data, username: e.target.value})}/>
-          <label>Password</label>
-          <input type="password" placeholder="password" onChange={(e) => setData({...data, password: e. target.value})}/>
-          <button onClick={buttonLogin}>Login</button>
+    <div className="auth-login">
+        <form className="login" onSubmit={buttonLogin}>
+            <h1>Login</h1>
+            
+            <input type="text" placeholder="username" onChange={(e) => setData({...data, username: e.target.value})}/>
+            <input type="password" placeholder="password" onChange={(e) => setData({...data, password: e.target.value})}/>
+            <button type="submit">Login</button>
+        </form>
         </div>
     )
 }

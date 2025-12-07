@@ -27,15 +27,14 @@ function Register() {
     }
 
     return(
-       <div className="Register">
-        <h1>Register</h1>
-        <label>Username</label>
-        <input type="text" placeholder="username" onChange={(e) => setData({...data, username: e.target.value})}/>
-        <label>Email</label>
-        <input type="text" placeholder="email" onChange={(e) => setData({...data, email: e.target.value})}/>
-        <label>Password</label>
-        <input type="password" placeholder="password" onChange={(e) => setData({...data, password: e.target.value})}/>
-        <button onClick={buttonRegister}>Register</button>
+        <div className="auth-register">
+            <form className="register" onSubmit={buttonRegister}>
+                <h1>Register</h1>
+                <input type="text" placeholder="username" onChange={(e) => setData({...data, username: e.target.value})}/>
+                <input type="email" placeholder="email" onChange={(e) => setData({...data, email: e.target.value})}/>
+                <input type="password" placeholder="password" onChange={(e) => setData({...data, password: e.target.value})}/>
+                <button type="submit">Register</button>
+            </form>
        </div>
     )
 
