@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { login } from "../redux/userSlice";
 import "./login.css"
 
  function Login(){
@@ -9,17 +11,22 @@ import "./login.css"
         password: ""
     });
     const navigate = useNavigate();
-
-    const buttonLogin = (e) => {
+    const dispatch = useDispatch()
+    const buttonLogin = async (e) => {
         e.preventDefault();
-        try{
-            const user = axios.post("http://localhost:3001/api/login", data);
-            alert(user.data.message)
-            navigate("/awd");
-        } catch (err) {
-             console.log(`Login Error ${err}`)
-             alert("Something Happened Check something")
-           
+        try {
+            const response = await axios.post("http://localhost:3001/api/login", data);
+            const { user, token, message } = response.data || {};
+            alert(message || "Login successful");
+            dispatch(login({
+                user: user || data.username,
+                token: token || null
+            }));
+            console.log(response.data);
+            navigate("/");
+        } catch (error) {
+            console.log(`Login Error ${error}`);
+            alert(`${error.response.data.message}`);
         }
     }
 

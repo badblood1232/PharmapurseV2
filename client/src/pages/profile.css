@@ -1,0 +1,77 @@
+.profile {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f7fb 0%, #e7f2ff 50%, #f4f7fb 100%);
+  padding: 2rem 8%;
+}
+
+.profile__header {
+  margin-bottom: 2rem;
+}
+
+.profile__header h1 {
+  color: #0b1d38;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.profile__header p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.profile__content {
+  max-width: 800px;
+}
+
+.profile__card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.profile__card h2 {
+  color: #0b1d38;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile__field label {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.profile__field span {
+  color: #0b1d38;
+  font-size: 1.1rem;
+}
+
+.profile__status {
+  color: #10b981;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .profile__field {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+

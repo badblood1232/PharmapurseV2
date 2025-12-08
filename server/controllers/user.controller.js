@@ -21,7 +21,7 @@ const AuthController = {
         const token = await Service.login(username, password);
         res.json({ message: 'Login successful', token });
         }catch (error) {
-            res.status(401).json({ message: 'Invalid credentials' });
+            res.status(401).json({ message: error.message });
         }
        
     },

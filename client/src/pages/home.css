@@ -1,0 +1,146 @@
+.home {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f7fb 0%, #e7f2ff 50%, #f4f7fb 100%);
+  color: #0f172a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  padding: 4rem 8%;
+  align-items: center;
+}
+
+.hero__text h1 {
+  font-size: 2.8rem;
+  margin: 0.25rem 0 0.75rem;
+  color: #0b1d38;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.lede {
+  max-width: 560px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.hero__cta {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.9rem 1.4rem;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.25);
+}
+
+.btn.ghost {
+  background: #fff;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.hero__card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.hero__card h3 {
+  margin-top: 0;
+  color: #0b1d38;
+}
+
+.hero__card ul {
+  padding-left: 1.1rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.about {
+  background: #fff;
+  margin-top: 1rem;
+  padding: 3.5rem 8%;
+  border-top: 1px solid #e2e8f0;
+}
+
+.about h2 {
+  margin-top: 0;
+  color: #0b1d38;
+  font-size: 2rem;
+}
+
+.about p {
+  color: #334155;
+  max-width: 760px;
+  line-height: 1.6;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.pillars .card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  color: #334155;
+}
+
+.pillars h4 {
+  margin: 0 0 0.4rem;
+  color: #0b1d38;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 3rem 7%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__cta {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+

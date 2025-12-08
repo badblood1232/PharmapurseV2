@@ -12,11 +12,11 @@ const AuthService = {
     login: async (username, password) => {
         const user = await User.findUser(username);
         if (!user) {
-            return null;
+            throw new Error('User not found');
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return null;
+           throw new Error('Invalid credentials');
         }
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
         return token;
