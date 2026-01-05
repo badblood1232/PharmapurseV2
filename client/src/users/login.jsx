@@ -18,11 +18,9 @@ import "./login.css"
             const response = await axios.post("http://localhost:3001/api/login", data);
             const { user, token, message } = response.data || {};
             alert(message || "Login successful");
-            dispatch(login({
-                user: user || data.username,
-                token: token || null
-            }));
-            console.log(response.data);
+           dispatch(login({user, token}))
+            console.log(response.data); 
+            localStorage.setItem("auth",JSON.stringify({user, token}))
             navigate("/");
         } catch (error) {
             console.log(`Login Error ${error}`);

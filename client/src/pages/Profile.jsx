@@ -1,9 +1,13 @@
 import { useSelector } from 'react-redux'
 import './profile.css'
-
+import EditProfileModal from './EditProfile.jsx'
+import { useState } from 'react'
 function Profile() {
   const { user, token } = useSelector((state) => state.user)
 
+
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
+  
   return (
     <div className="profile">
       <div className="profile__header">
@@ -18,10 +22,6 @@ function Profile() {
               <label>Username:</label>
               <span>{typeof user === 'string' ? user : user?.username || 'N/A'}</span>
             </div>
-            <div className="profile__field">
-              <label>Status:</label>
-              <span className="profile__status">Active</span>
-            </div>
             {token && (
               <div className="profile__field">
                 <label>Session:</label>
@@ -31,6 +31,8 @@ function Profile() {
           </div>
         </div>
       </div>
+     <button onClick={() => setIsEditProfileOpen(true)}>Edit Profile</button>
+     <EditProfileModal isOpen={isEditProfileOpen} onClose={() => setIsEditProfileOpen(false)} />
     </div>
   )
 }
