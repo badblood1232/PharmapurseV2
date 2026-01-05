@@ -1,0 +1,126 @@
+.edit-profile-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.edit-profile-page__header {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.3);
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.edit-profile-page__header h2 {
+  color: #0b1d38;
+  font-size: 1.8rem;
+  margin: 0 0 2rem;
+  font-weight: 600;
+}
+
+.edit-profile-page__header input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0b1d38;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.edit-profile-page__header input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.edit-profile-page__header input::placeholder {
+  color: #94a3b8;
+}
+
+.edit-profile-page__header button {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-profile-page__header button[type="submit"] {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.edit-profile-page__header button[type="submit"]:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.edit-profile-page__header button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.edit-profile-page__header button:not([type="submit"]) {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.edit-profile-page__header button:not([type="submit"]):hover {
+  background: #e2e8f0;
+  color: #0b1d38;
+}
+
+@media (max-width: 640px) {
+  .edit-profile-page__header {
+    padding: 1.5rem;
+  }
+
+  .edit-profile-page__header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}

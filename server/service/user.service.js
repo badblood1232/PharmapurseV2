@@ -20,6 +20,11 @@ const AuthService = {
         }
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
         return token;
+    },
+    EditProfilePage: async (id, email, password) => {
+        const hashedPassword = await bcrypt.hash(password,10)
+        const user = await User.EditProfilePage(id, email, hashedPassword);
+        return user;
     }
 }
 
