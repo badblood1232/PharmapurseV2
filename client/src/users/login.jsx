@@ -16,11 +16,11 @@ import "./login.css"
         e.preventDefault();
         try {
             const response = await axios.post("http://localhost:3001/api/login", data);
-            const { user, token, message } = response.data || {};
+            const {token, message } = response.data || {};
             alert(message || "Login successful");
            dispatch(login({user: data.username, token}))
             console.log(response.data); 
-            localStorage.setItem("auth",JSON.stringify({user, token}))
+            localStorage.setItem("auth",JSON.stringify({user: data.username, token}))
             navigate("/");
         } catch (error) {
             console.log(`Login Error ${error}`);

@@ -34,6 +34,11 @@
   position: relative;
 }
 
+.edit-profile-page__header form {
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(20px);
@@ -112,6 +117,37 @@
 .edit-profile-page__header button:not([type="submit"]):hover {
   background: #e2e8f0;
   color: #0b1d38;
+}
+
+.edit-profile-page__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  color: #64748b;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-profile-page__close:hover {
+  background: #e2e8f0;
+  color: #0b1d38;
+  transform: rotate(90deg);
+}
+
+.edit-profile-page__close:active {
+  transform: rotate(90deg) scale(0.95);
 }
 
 @media (max-width: 640px) {

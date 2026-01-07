@@ -16,8 +16,8 @@ function App() {
     const storedAuth = localStorage.getItem("auth");
 
     if (storedAuth) {
-      const { user, token } = JSON.parse(storedAuth);
-      dispatch(login({ user, token }));
+      const {user, token } = JSON.parse(storedAuth);
+      dispatch(login({user, token }));
     }
   }, []);
  

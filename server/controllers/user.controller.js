@@ -1,4 +1,4 @@
-import EditProfilePage from '../../client/src/pages/EditProfile.jsx';
+
 import Service from '../service/user.service.js';
 
 
@@ -30,10 +30,10 @@ const AuthController = {
     EditProfilePage: async (req, res) => {
         try{
             const {email, password } = req.body;
-            const {id} = req.id
+            const id = req.user.id
             const user = await Service.EditProfilePage(id, email, password);
             res.json({ message: 'Profile updated successfully', user: user});
-        } catch (error) {
+        } catch (error) {   
             console.log("EDIT PROFILE ERROR:", error);
             res.status(400).json({ message: error.message || 'Profile update failed' });
         }

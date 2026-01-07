@@ -1,4 +1,3 @@
-import EditProfilePage from '../../client/src/pages/EditProfile.jsx';
 import db from '../config/db.js';
 
 const User = {
