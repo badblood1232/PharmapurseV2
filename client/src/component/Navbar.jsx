@@ -8,7 +8,8 @@ function Navbar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogout = () => {
+  const handleLogout = () =>{
+    localStorage.removeItem('auth')
     dispatch(logout())
     navigate('/login')
   }

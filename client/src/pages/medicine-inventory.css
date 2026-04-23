@@ -15,8 +15,19 @@
 }
 
 .inventory__header p {
-  color: #64748b;
+  color: #3260a0;
   font-size: 1.1rem;
+}
+
+.inventory__list h3{
+  color: #0b1d38;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+}
+.inventory__list p{
+  color: #3260a0;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
 }
 
 .inventory__content {

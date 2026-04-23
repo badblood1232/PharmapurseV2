@@ -1,31 +1,15 @@
-import Medicine from "../models/medicine.model";
+import Medicine from '../models/medicine.model.js';
 
+const MedicineService = {
+    getAll: async () => {
+        const medicines = await Medicine.getAll();
+        return medicines;
+    },
 
-    const MedicineService = {
-         create: async (name, details, image) => {
-                const medicine = await Medicine.Create(name, details, image);
-                return medicine;
-            
-        },
+    getById: async (id) => {
+        const medicine = await Medicine.getById(id);
+        return medicine;
+    },
+};
 
-        getall: async () => {
-            const medicine = await Medicine.getall();
-            return medicine;
-        },
-
-        GetbyId: async (id) => {
-            const medicine = await Medicine.GetbyId(id);
-            return medicine;
-        },
-
-        Update: async (id, name, details, image) =>{
-            const medicine = await Medicine.Update(id, name, details, image);
-            return medicine;
-        }
-
-
-
-
-    }
-
-    export default MedicineService
+export default MedicineService;

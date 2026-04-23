@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import { useSelector } from "react-redux";
 import "./EditProfile.css";
 
@@ -14,7 +14,7 @@ function EditProfilePage({isOpen, onClose}) {
     const buttonSubmit = async(e) =>{
         e.preventDefault();
         try{
-           const response = await axios.put("http://localhost:3001/api/edit", data, {
+           const response = await api.put("api/edit", data, {
                headers: {
                    Authorization: `Auth ${token}`
                }

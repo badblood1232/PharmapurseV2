@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../api/api";
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
@@ -15,7 +15,7 @@ import "./login.css"
     const buttonLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/api/login", data);
+            const response = await api.post("api/login", data);
             const {token, message } = response.data || {};
             alert(message || "Login successful");
            dispatch(login({user: data.username, token}))

@@ -1,6 +1,10 @@
 import './home.css'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Home() {
+  const token = useSelector((state) => state.user.token)
+
   return (
     <div className="home">
       <header className="hero">
@@ -15,6 +19,12 @@ function Home() {
           <div className="hero__cta">
             <button className="btn primary">Refill a prescription</button>
             <button className="btn ghost">Talk with a pharmacist</button>
+            {!token && (
+              <>
+                <Link to="/login" className="btn ghost">Login</Link>
+                <Link to="/register" className="btn primary">Register</Link>
+              </>
+            )}
           </div>
         </div>
         <div className="hero__card">

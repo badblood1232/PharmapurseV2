@@ -1,28 +1,31 @@
-import Service from '../service/medicine.service';
+import Service from '../service/medicine.service.js';
 
+const MedController = {
+    getAll: async (req, res) => {
+        try {
+            const medicines = await Service.getAll();
+            res.status(200).json(medicines);
+        } catch (error) {
+            console.log('GET MEDICINES ERROR:', error);
+            res.status(500).json({ message: 'Failed to fetch medicines' });
+        }
+    },
 
- const MedController = {
+    getById: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const medicine = await Service.getById(id);
 
-        create: async (req, res) => {
-            try {
-                const {name, details, image} = req.body;
-                const medicine = await Service.create (name, details, image);
-                res.status(201).json({message: "Medicine Successfully added!"})
+            if (!medicine) {
+                return res.status(404).json({ message: 'Medicine not found' });
             }
-            catch(error){
-                console.log(`error${error}`)
-                res.status(400).json({message: error.message})
-            }
-        } 
 
+            return res.status(200).json(medicine);
+        } catch (error) {
+            console.log('GET MEDICINE BY ID ERROR:', error);
+            return res.status(500).json({ message: 'Failed to fetch medicine' });
+        }
+    },
+};
 
-
-
-
-
-
-
-
-
-
- }
+export default MedController;
