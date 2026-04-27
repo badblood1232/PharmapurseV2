@@ -1,5 +1,5 @@
 import './medicine-inventory.css'
-
+import Modal from '../Modal/Order'
 import { useEffect, useState } from 'react'
 import api from '../api/api'
 
@@ -7,6 +7,7 @@ function MedicineInventory() {
   const [medicines, setMedicines] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const fetchMedicines = async () => {
@@ -22,6 +23,12 @@ function MedicineInventory() {
 
     fetchMedicines()
   }, [])
+
+  const handleShow = () =>{
+    setShowModal(true)
+  }
+
+  
 
   return (
     <div className="medicine-inventory">
@@ -46,8 +53,10 @@ function MedicineInventory() {
                 <img src= {`${api.defaults.baseURL}image/${medicine.image}`} />
                 <h3>{medicine.name}</h3>
                 <p>{medicine.details}</p>
+                <button onClick={handleShow}>Order Now!</button>
               </div>
             ))}
+           {showModal && <Modal setShowModal={setShowModal} />}
           </div>
         )}
       </div>
