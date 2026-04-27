@@ -8,6 +8,7 @@ function MedicineInventory() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const [selectedMedicine, setSelectedMedicine] = useState(null)
 
   useEffect(() => {
     const fetchMedicines = async () => {
@@ -24,7 +25,8 @@ function MedicineInventory() {
     fetchMedicines()
   }, [])
 
-  const handleShow = () =>{
+  const handleShow = (medicine) =>{
+    setSelectedMedicine(medicine)
     setShowModal(true)
   }
 
@@ -53,10 +55,17 @@ function MedicineInventory() {
                 <img src= {`${api.defaults.baseURL}image/${medicine.image}`} />
                 <h3>{medicine.name}</h3>
                 <p>{medicine.details}</p>
-                <button onClick={handleShow}>Order Now!</button>
+                <p>Price: ${Number(medicine.price || 0).toFixed(2)}</p>
+                <button onClick={() => handleShow(medicine)}>Order Now!</button>
               </div>
             ))}
-           {showModal && <Modal setShowModal={setShowModal} />}
+           {showModal && (
+            <Modal
+              setShowModal={setShowModal}
+              medicine={selectedMedicine}
+              onAdded={() => window.alert('Added to cart')}
+            />
+           )}
           </div>
         )}
       </div>

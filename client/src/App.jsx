@@ -5,6 +5,7 @@ import Register from './users/Register.jsx'
 import Home from './pages/Home.jsx'
 import MedicineInventory from './pages/MedicineInventory.jsx'
 import Profile from './pages/Profile.jsx'
+import MyCart from './pages/MyCart.jsx'
 import Navbar from './component/Navbar.jsx'
 import {useEffect} from 'react'
 import { useDispatch } from "react-redux";
@@ -30,6 +31,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/medicine-inventory" element={<MedicineInventory />} />
+      <Route path="/my-cart" element={<MyCart />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
   </Router>

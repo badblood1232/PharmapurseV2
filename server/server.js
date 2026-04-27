@@ -10,9 +10,11 @@ app.use(cors());
 
 import userRoutes from './routes/user.routes.js';
 import medicineRoutes from './routes/medicine.routes.js';
+import orderRoutes from './routes/order.routes.js';
 app.use('/image', express.static('image'));
 app.use('/api', userRoutes);
 app.use('/api', medicineRoutes);
+app.use('/api', orderRoutes);
 
 
 app.listen(3001, () => {

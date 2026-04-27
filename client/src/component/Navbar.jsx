@@ -29,6 +29,9 @@ function Navbar() {
           <Link to="/medicine-inventory" className="navbar__link">
             Medicine Inventory
           </Link>
+          <Link to="/my-cart" className="navbar__link">
+            My Cart
+          </Link>
           <Link to="/profile" className="navbar__link">
             Profile
           </Link>
