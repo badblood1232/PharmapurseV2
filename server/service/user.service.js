@@ -18,8 +18,17 @@ const AuthService = {
         if (!isPasswordValid) {
            throw new Error('Invalid credentials');
         }
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-        return token;
+        const role = user.role || 'user';
+        const token = jwt.sign({ id: user.id, role }, process.env.JWT_SECRET);
+        return {
+            token,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role,
+            },
+        };
     },
     EditProfilePage: async (id, email, password) => {
         const hashedPassword = await bcrypt.hash(password,10)

@@ -1,0 +1,154 @@
+.orders-page {
+  min-height: calc(100vh - 80px);
+  padding: 2rem 8%;
+  background: #f8fafc;
+}
+
+.orders-page__header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.orders-page__header p {
+  margin-top: 0.5rem;
+  color: #475569;
+}
+
+.orders-panel {
+  margin-top: 1.5rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.orders-table {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.orders-table__head,
+.orders-table__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.4fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.orders-table__head {
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.orders-table__row {
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  background: #fff;
+}
+
+.orders-status {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.orders-error {
+  color: #b91c1c;
+}
+
+.admin-orders {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+.admin-orders__head,
+.admin-orders__row {
+  grid-template-columns: 0.7fr 1.2fr 1fr 0.8fr;
+}
+
+.admin-orders__row {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-orders__row:hover {
+  border-color: #2563eb;
+}
+
+.admin-orders__detail-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.admin-orders__detail-header h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.admin-orders__detail-header p {
+  margin: 0.4rem 0 0;
+  color: #64748b;
+}
+
+.admin-orders__detail-header select {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.6rem;
+  background: #fff;
+  color: #0f172a;
+}
+
+.admin-orders__items {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.admin-orders__item,
+.admin-orders__total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.75rem;
+}
+
+.admin-orders__item p {
+  margin: 0.3rem 0 0;
+  color: #64748b;
+}
+
+.admin-orders__total {
+  margin-top: 1rem;
+  color: #0f172a;
+}
+
+@media (max-width: 900px) {
+  .admin-orders {
+    grid-template-columns: 1fr;
+  }
+
+  .orders-table__head {
+    display: none;
+  }
+
+  .orders-table__row,
+  .admin-orders__row {
+    grid-template-columns: 1fr;
+  }
+}

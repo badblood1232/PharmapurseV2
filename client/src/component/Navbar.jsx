@@ -5,6 +5,7 @@ import './navbar.css'
 
 function Navbar() {
   const { user, token } = useSelector((state) => state.user)
+  const isAdmin = user?.role === 'admin'
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,12 +27,23 @@ function Navbar() {
           <h2>PharmaPurse</h2>
         </Link>
         <div className="navbar__links">
-          <Link to="/medicine-inventory" className="navbar__link">
-            Medicine Inventory
-          </Link>
-          <Link to="/my-cart" className="navbar__link">
-            My Cart
-          </Link>
+          {isAdmin ? (
+            <Link to="/admin/orders" className="navbar__link">
+              Admin Orders
+            </Link>
+          ) : (
+            <>
+              <Link to="/medicine-inventory" className="navbar__link">
+                Medicine Inventory
+              </Link>
+              <Link to="/my-cart" className="navbar__link">
+                My Cart
+              </Link>
+              <Link to="/my-orders" className="navbar__link">
+                My Orders
+              </Link>
+            </>
+          )}
           <Link to="/profile" className="navbar__link">
             Profile
           </Link>

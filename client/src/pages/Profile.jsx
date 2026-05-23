@@ -28,6 +28,10 @@ function Profile() {
                 <span>Logged in</span>
               </div>
             )}
+            <div className="profile__field">
+              <label>Role:</label>
+              <span>{user?.role || 'user'}</span>
+            </div>
           </div>
         </div>
       </div>

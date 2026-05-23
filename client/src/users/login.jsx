@@ -16,11 +16,11 @@ import "./login.css"
         e.preventDefault();
         try {
             const response = await api.post("api/login", data);
-            const {token, message } = response.data || {};
+            const {token, user, message } = response.data || {};
             alert(message || "Login successful");
-           dispatch(login({user: data.username, token}))
+           dispatch(login({user: user || data.username, token}))
             console.log(response.data); 
-            localStorage.setItem("auth",JSON.stringify({user: data.username, token}))
+            localStorage.setItem("auth",JSON.stringify({user: user || data.username, token}))
             navigate("/");
         } catch (error) {
             console.log(`Login Error ${error}`);

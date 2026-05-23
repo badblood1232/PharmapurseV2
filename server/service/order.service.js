@@ -57,6 +57,94 @@ const OrderService = {
 
     return { orderId, totalAmount, items };
   },
+
+  checkout: async (userId) => {
+    const cart = await Order.getPendingCartByUserId(userId);
+    const items = cart.filter((row) => row.item_id);
+
+    if (!items.length) {
+      throw new Error('Cart is empty');
+    }
+
+    const affectedRows = await Order.checkoutPendingOrder(userId);
+    if (!affectedRows) {
+      throw new Error('No pending cart found');
+    }
+
+    return { orderId: cart[0].order_id, status: 'placed' };
+  },
+
+  getMyOrders: async (userId) => {
+    const rows = await Order.getSubmittedOrdersByUserId(userId);
+    return rows.map((order) => ({
+      order_id: order.order_id,
+      total_amount: Number(order.total_amount || 0),
+      status: order.status,
+      created_at: order.created_at,
+    }));
+  },
+
+  getAllSubmittedOrders: async () => {
+    const rows = await Order.getAllSubmittedOrders();
+    return rows.map((order) => ({
+      order_id: order.order_id,
+      total_amount: Number(order.total_amount || 0),
+      status: order.status,
+      created_at: order.created_at,
+      user: {
+        id: order.user_id,
+        username: order.username,
+        email: order.email,
+      },
+    }));
+  },
+
+  getSubmittedOrderDetail: async (orderId) => {
+    const rows = await Order.getSubmittedOrderDetail(orderId);
+
+    if (!rows.length) {
+      return null;
+    }
+
+    const first = rows[0];
+    return {
+      order_id: first.order_id,
+      total_amount: Number(first.total_amount || 0),
+      status: first.status,
+      created_at: first.created_at,
+      user: {
+        id: first.user_id,
+        username: first.username,
+        email: first.email,
+      },
+      items: rows
+        .filter((row) => row.item_id)
+        .map((row) => ({
+          item_id: row.item_id,
+          med_id: row.med_id,
+          name: row.name,
+          details: row.details,
+          image: row.image,
+          quantity: row.quantity,
+          unit_price: Number(row.unit_price || 0),
+        })),
+    };
+  },
+
+  updateSubmittedOrderStatus: async (orderId, status) => {
+    const allowedStatuses = ['placed', 'approved', 'rejected', 'completed'];
+
+    if (!allowedStatuses.includes(status)) {
+      throw new Error('Invalid order status');
+    }
+
+    const affectedRows = await Order.updateSubmittedOrderStatus(orderId, status);
+    if (!affectedRows) {
+      throw new Error('Order not found');
+    }
+
+    return { orderId, status };
+  },
 };
 
 export default OrderService;

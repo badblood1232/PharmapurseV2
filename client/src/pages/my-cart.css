@@ -77,9 +77,14 @@
   border: none;
   border-radius: 8px;
   padding: 0.8rem 1rem;
-  background: #94a3b8;
+  background: #2563eb;
   color: #fff;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.my-cart__checkout:disabled {
+  background: #94a3b8;
   cursor: not-allowed;
 }
 

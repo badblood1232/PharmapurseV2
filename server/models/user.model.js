@@ -14,6 +14,14 @@ const User = {
         return result.insertId; // return the inserted ID
     },
 
+    findById: async (id) => {
+        const [rows] = await db.query(
+            'SELECT id, username, email, role, created_at FROM users WHERE id = ?',
+            [id]
+        );
+        return rows[0] || null;
+    },
+
      EditProfilePage: async(id, email, hashedPassword) =>{
         const[result] = await db.query(
             'UPDATE users SET email = ?, password = ? Where id = ?',[email, hashedPassword, id]

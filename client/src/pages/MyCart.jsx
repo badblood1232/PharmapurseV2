@@ -1,6 +1,7 @@
 import './my-cart.css'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import api from '../api/api'
 
 function MyCart() {
@@ -8,30 +9,52 @@ function MyCart() {
   const [items, setItems] = useState([])
   const [totalAmount, setTotalAmount] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [checkingOut, setCheckingOut] = useState(false)
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        setLoading(true)
-        const response = await api.get('api/orders/my-cart', {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        setItems(response.data?.items || [])
-        setTotalAmount(Number(response.data?.totalAmount || 0))
-      } catch (err) {
-        setError(err.response?.data?.message || 'Failed to load cart')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    if (token) {
-      fetchCart()
+  const loadCart = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError('')
+      const response = await api.get('api/orders/my-cart', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      setItems(response.data?.items || [])
+      setTotalAmount(Number(response.data?.totalAmount || 0))
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to load cart')
+    } finally {
+      setLoading(false)
     }
   }, [token])
 
+  useEffect(() => {
+    if (token) {
+      loadCart()
+    }
+  }, [loadCart, token])
+
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
+
+  const handleCheckout = async () => {
+    try {
+      setCheckingOut(true)
+      setError('')
+      await api.post(
+        'api/orders/checkout',
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      setItems([])
+      setTotalAmount(0)
+      navigate('/my-orders')
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to checkout')
+    } finally {
+      setCheckingOut(false)
+    }
+  }
 
   return (
     <div className="my-cart">
@@ -84,9 +107,10 @@ function MyCart() {
           <button
             type="button"
             className="my-cart__checkout"
-            disabled={items.length === 0}
+            onClick={handleCheckout}
+            disabled={items.length === 0 || checkingOut}
           >
-            Proceed to Checkout
+            {checkingOut ? 'Placing Order...' : 'Proceed to Checkout'}
           </button>
         </div>
       </div>

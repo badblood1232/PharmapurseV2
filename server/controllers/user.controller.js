@@ -7,7 +7,7 @@ const AuthController = {
         
         try{
          const { email, username , password } = req.body;
-        const user = await Service.register(email, username , password);
+        const user = await Service.register(username, email , password);
         res.json({ message: 'User registered successfully', user: user});
         } catch (error) {
              console.log("REGISTER ERROR:", error);   // <-- IMPORTANT
@@ -19,8 +19,8 @@ const AuthController = {
     login: async (req, res) => {
         try{
         const { username, password } = req.body;
-        const token = await Service.login(username, password);
-        res.json({ message: 'Login successful', token });
+        const auth = await Service.login(username, password);
+        res.json({ message: 'Login successful', ...auth });
         }catch (error) {
             res.status(401).json({ message: error.message });
         }

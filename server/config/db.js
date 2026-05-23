@@ -5,6 +5,8 @@ import path from 'path';
 
 dotenv.config();
 
+const dbPassword = process.env.DB_PASSWORD ?? process.env.DB_PASS;
+
 // Read schema.sql
 const sqlpath = path.join(process.cwd(), 'config/schema.sql'); // adjust path
 const sql = fs.readFileSync(sqlpath, 'utf8');
@@ -14,7 +16,7 @@ async function initializeDB() {
     const connection = await mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
+        password: dbPassword,
         multipleStatements: true,
     });
 
@@ -25,7 +27,7 @@ async function initializeDB() {
     const db = await mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
+        password: dbPassword,
         database: process.env.DB_DATABASE,
         multipleStatements: true,
     });

@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.post('/orders/cart/items', authMiddleware, OrderController.addToCart);
 router.get('/orders/my-cart', authMiddleware, OrderController.getMyCart);
+router.post('/orders/checkout', authMiddleware, OrderController.checkout);
+router.get('/orders/my-orders', authMiddleware, OrderController.getMyOrders);
 
 export default router;
